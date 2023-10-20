@@ -1,5 +1,6 @@
-from entity.player import Player
-from entity.weapon import Weapon
+from src.entity.player import Player
+from src.entity.weapon import Weapon
+from src.utils import magician_choice
 
 
 class Magician(Player):
@@ -13,16 +14,13 @@ class Magician(Player):
         self.mana = mana
 
     def send_damage(self) -> int:
-        choice = input("Voulez vous  :\n1-Attaquer\n2-Lancer un sort")
-        is_chosing = True
-        while is_chosing:
+        choice = magician_choice()
+        is_choosing = True
+        while is_choosing:
             if int(choice) == 1:
                 return self.Weapon.damage + self.attack
             elif int(choice) == 2:
                 self.mana -= 10
                 return self.Weapon.damage + self.attack + self.magic_attack
             else:
-                is_chosing = True
-    def choice_of_attack(self):
-        pass
-
+                is_choosing = True

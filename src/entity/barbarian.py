@@ -1,4 +1,4 @@
-from entity.player import Player
+from src.entity.player import Player
 
 
 class Barbarian(Player):

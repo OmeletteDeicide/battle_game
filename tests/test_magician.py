@@ -1,5 +1,5 @@
-from entity.magician import Magician
-from entity.weapon import Weapon
+from src.entity.magician import Magician
+from src.entity.weapon import Weapon
 
 
 def create_magician() -> Magician:

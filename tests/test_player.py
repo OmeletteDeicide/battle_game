@@ -1,5 +1,5 @@
-from entity.player import Player
-from entity.weapon import Weapon
+from src.entity.player import Player
+from src.entity.weapon import Weapon
 
 
 def create_player() -> Player:
@@ -16,3 +16,10 @@ def test_take_damage():
     player_test = create_player()
     player_test.take_damage(45)
     assert player_test.pv == 30
+
+def test_make_attack():
+    player_fighter = create_player()
+    player_receiver = create_player()
+    assert player_receiver.pv == 50
+    player_fighter.make_attack(player_receiver)
+    assert player_receiver.pv == 30
