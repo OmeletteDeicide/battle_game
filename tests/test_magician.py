@@ -10,4 +10,4 @@ def create_magician() -> Magician:
 
 def test_send_damage():
     magician_test = create_magician()
-    assert magician_test.send_damage() == 31
+    assert magician_test.compute_damage() == 31

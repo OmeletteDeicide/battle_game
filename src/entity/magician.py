@@ -1,26 +1,21 @@
-from src.entity.player import Player
+from src.entity.basicentity import BasicEntity
 from src.entity.weapon import Weapon
-from src.utils import magician_choice
+from src.gameplay import magician_choice
 
 
-class Magician(Player):
-    def __init__(self, name: str, pv: int, defense: int, attack: int, weapon: Weapon,magic_attack: int, mana: int):
-        self.Weapon = weapon
-        self.name = name
-        self.pv = pv
-        self.defense = defense
-        self.attack = attack
-        self.magic_attack = magic_attack
+class Magician(BasicEntity):
+    def __init__(self, name: str, pv: int, defense: int, attack: int, weapon: Weapon, jinx: int, mana: int):
+        super().__init__(name, pv, defense, attack, weapon)
+        self.jinx = jinx
         self.mana = mana
 
-    def send_damage(self) -> int:
+    def compute_damage(self) -> int:
         choice = magician_choice()
-        is_choosing = True
-        while is_choosing:
-            if int(choice) == 1:
-                return self.Weapon.damage + self.attack
-            elif int(choice) == 2:
-                self.mana -= 10
-                return self.Weapon.damage + self.attack + self.magic_attack
-            else:
-                is_choosing = True
+        if choice == 1:
+            return super().compute_damage()
+        return self.magic_attack()
+
+    def magic_attack(self):
+        if self.mana > 10:
+            self.mana -= 10
+            return self.attack + self.jinx

@@ -1,7 +1,8 @@
-from src.entity.player import Player
+from src.entity.basicentity import BasicEntity
 
 
-class Barbarian(Player):
+class Barbarian(BasicEntity):
 
-    def send_damage(self) -> int:
-        return 2*(self.Weapon.damage + self.attack)
+    def compute_damage(self) -> int:
+        return 2*(super().compute_damage())
+    
